@@ -1,21 +1,26 @@
-
+/**
+ *   Dijkstra-Demo.js
+ *   github.com/dguard/snake-dijkstra
+ *   Licensed under the MIT license.
+ *
+ *   Implementation By Alexander Serditov (keep@digitallyconstructed.ru)
+ **/
 
 var DijkstraDemo = function () {
 
     var TOTAL_ROWS = 15;
     var TOTAL_COLS = 17;
 
-
     var gridRowsLength = [
         8,
         9,
-        /*9,*/ 10,
+        10,
         11,
         12,
         13,
-        14, // seventh
+        14,
 
-        13, // mirror edged
+        13,
         12,
         11,
         10,
@@ -213,8 +218,6 @@ var DijkstraDemo = function () {
                         position: relative;
                         width: 400px;
                         height: 400px;
-                        // overflow: hidden;
-                        
                         margin-left: -${marginLeft['even'][i]}px;
                     `;
                     hexagon.classList.add(hexagonClass);
@@ -234,7 +237,6 @@ var DijkstraDemo = function () {
                         position: relative;
                         width: 400px;
                         height: 400px;
-                        // overflow: hidden;
                         margin-top: -100px;
                         margin-left: -${marginLeft['odd'][i]}px;
                         
@@ -387,7 +389,7 @@ var DijkstraDemo = function () {
         for(var i = 0; i < gridRowsLength.length; i++) {
             var row = [];
             for(var j = 0; j < gridRowsLength[j].length; j++) {
-                cell = null;
+                var cell = null;
                 row.push(cell);
             }
             grid.push(row);

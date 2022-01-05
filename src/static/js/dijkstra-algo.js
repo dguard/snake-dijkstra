@@ -1,19 +1,23 @@
-
-var DijkstraAlgo = {
-
-};
+/**
+ *   Dijkstra-Algo.js
+ *   github.com/dguard/snake-dijkstra
+ *   Licensed under the MIT license.
+ *
+ *   Implementation By Alexander Serditov (keep@digitallyconstructed.ru)
+ **/
+var DijkstraAlgo = {};
 DijkstraAlgo.js = function () {
 
     var gridRowsLength = [
         8,
         9,
-        /*9,*/ 10,
+        10,
         11,
         12,
         13,
-        14, // seventh
+        14,
 
-        13, // mirror edged
+        13,
         12,
         11,
         10,
@@ -256,8 +260,6 @@ DijkstraAlgo.js = function () {
 
             this._openNode(searchNode);
         }
-        // visitedList
-        // openList
 
     }
 

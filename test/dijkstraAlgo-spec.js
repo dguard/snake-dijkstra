@@ -1,16 +1,22 @@
-
+/**
+ *   DijkstraAlgo-Spec.js
+ *   github.com/dguard/snake-dijkstra
+ *   Licensed under the MIT license.
+ *
+ *   Implementation By Alexander Serditov (keep@digitallyconstructed.ru)
+ **/
 describe('dijkstraAlgo', () => {
 
     var gridRowsLength = [
         8,
         9,
-        /*9,*/ 10,
+        10,
         11,
         12,
         13,
-        14, // seventh
+        14,
 
-        13, // mirror edged
+        13,
         12,
         11,
         10,
@@ -18,7 +24,7 @@ describe('dijkstraAlgo', () => {
         8
     ];
 
-    it('it should go to goal', ()=> {
+    it('it should go to the goal', ()=> {
         var grid = [];
         for(var i = 0; i < gridRowsLength.length; i++) {
             var row = [];
