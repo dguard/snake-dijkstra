@@ -16,10 +16,11 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "cypress": "^4.12.1",
     "karma-chrome-launcher": "^3.1.0",
     "karma-jasmine": "^4.0.1",
+    "karma-phantomjs-launcher": "^1.0.4",
     "karma-requirejs": "^1.1.0",
-    "require": "^2.4.20",
-    "karma-phantomjs-launcher": "^1.0.4"
+    "require": "^2.4.20"
   }
 }

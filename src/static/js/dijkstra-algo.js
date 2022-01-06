@@ -77,58 +77,66 @@ DijkstraAlgo.js = function () {
 
         if(nodeY === 0) {
             if(nodeX === 0) {
+                //
                 this.addNeighbour(node, nodeY+1, nodeX, neighbours);
                 this.addNeighbour(node, nodeY+1, nodeX+1, neighbours);
-
+                //
                 this.addNeighbour(node, nodeY, nodeX+1, neighbours);
             } else if(nodeX < gridRowsLength[nodeY]-1) {
+                //
                 this.addNeighbour(node, nodeY+1, nodeX, neighbours);
                 this.addNeighbour(node, nodeY+1, nodeX+1, neighbours);
-
+                //
                 this.addNeighbour(node, nodeY, nodeX-1, neighbours);
                 this.addNeighbour(node, nodeY, nodeX+1, neighbours);
             } else if(nodeX === gridRowsLength[nodeY]-1) {
+                //
                 this.addNeighbour(node, nodeY+1, nodeX, neighbours);
                 this.addNeighbour(node, nodeY+1, nodeX+1, neighbours);
-
+                //
                 this.addNeighbour(node, nodeY, nodeX-1, neighbours);
             }
-        } else if(nodeY < 7) {
+        } else if(nodeY < 6) {
             if(nodeX === 0) {
-                this.addNeighbour(node, nodeY, nodeX, neighbours);
+                this.addNeighbour(node, nodeY-1, nodeX, neighbours);
+
+                //
+                this.addNeighbour(node, nodeY+1, nodeX, neighbours);
+                this.addNeighbour(node, nodeY+1, nodeX+1, neighbours);
+                //
+
+                this.addNeighbour(node, nodeY, nodeX+1, neighbours);
+            } else if(nodeX < gridRowsLength[nodeY]-1) {
+                //
+                this.addNeighbour(node, nodeY-1, nodeX-1, neighbours);
+                this.addNeighbour(node, nodeY-1, nodeX, neighbours);
 
                 this.addNeighbour(node, nodeY+1, nodeX, neighbours);
                 this.addNeighbour(node, nodeY+1, nodeX+1, neighbours);
 
                 this.addNeighbour(node, nodeY, nodeX+1, neighbours);
-            } else if(nodeX < gridRowsLength[nodeY]-1) {
-                this.addNeighbour(node, nodeY-1, nodeX, neighbours);
+                this.addNeighbour(node, nodeY, nodeX-1, neighbours);
+                //
+            } else if(nodeX === gridRowsLength[nodeY]-1) {
                 this.addNeighbour(node, nodeY-1, nodeX-1, neighbours);
 
+                //
                 this.addNeighbour(node, nodeY+1, nodeX, neighbours);
                 this.addNeighbour(node, nodeY+1, nodeX+1, neighbours);
-
-                this.addNeighbour(node, nodeY, nodeX+1, neighbours);
-                this.addNeighbour(node, nodeY, nodeX-1, neighbours);
-
-            } else if(nodeX === gridRowsLength[nodeY]-1) {
-                this.addNeighbour(node, nodeY, nodeX-1, neighbours);
-
-                this.addNeighbour(node, nodeY+1, nodeX, neighbours);
-                this.addNeighbour(node, nodeY+1, nodeX+1, neighbours);
+                //
 
                 this.addNeighbour(node, nodeY, nodeX-1, neighbours);
             }
-        } else if(nodeY === 7) {
+        } else if(nodeY === 6) {
             if(nodeX === 0) {
-                this.addNeighbour(node, nodeY, nodeX, neighbours);
-
-                this.addNeighbour(node, nodeY, nodeX+1, neighbours);
+                this.addNeighbour(node, nodeY-1, nodeX, neighbours);
 
                 this.addNeighbour(node, nodeY+1, nodeX, neighbours);
+
+                this.addNeighbour(node, nodeY, nodeX+1, neighbours);
             } else if(nodeX < gridRowsLength[nodeY]-1) {
+                this.addNeighbour(node, nodeY-1, nodeX-1, neighbours);
                 this.addNeighbour(node, nodeY-1, nodeX, neighbours);
-                this.addNeighbour(node, nodeY-1, nodeX+1, neighbours);
 
                 this.addNeighbour(node, nodeY+1, nodeX-1, neighbours);
                 this.addNeighbour(node, nodeY+1, nodeX, neighbours);
@@ -136,13 +144,13 @@ DijkstraAlgo.js = function () {
                 this.addNeighbour(node, nodeY, nodeX+1, neighbours);
                 this.addNeighbour(node, nodeY, nodeX-1, neighbours);
             } else if(nodeX === gridRowsLength[nodeY]-1) {
-                this.addNeighbour(node, nodeY, nodeX-1, neighbours);
+                this.addNeighbour(node, nodeY-1, nodeX-1, neighbours);
 
                 this.addNeighbour(node, nodeY+1, nodeX-1, neighbours);
 
                 this.addNeighbour(node, nodeY, nodeX-1, neighbours);
             }
-        } else if (nodeY > 7 && nodeY < gridRowsLength.length-1) {
+        } else if (nodeY > 6 && nodeY < gridRowsLength.length-1) {
             if(nodeX === 0) {
                 this.addNeighbour(node, nodeY-1, nodeX, neighbours);
                 this.addNeighbour(node, nodeY-1, nodeX+1, neighbours);
@@ -154,8 +162,8 @@ DijkstraAlgo.js = function () {
                 this.addNeighbour(node, nodeY-1, nodeX, neighbours);
                 this.addNeighbour(node, nodeY-1, nodeX+1, neighbours);
 
+                this.addNeighbour(node, nodeY+1, nodeX-1, neighbours);
                 this.addNeighbour(node, nodeY+1, nodeX, neighbours);
-                this.addNeighbour(node, nodeY+1, nodeX+1, neighbours);
 
                 this.addNeighbour(node, nodeY, nodeX+1, neighbours);
                 this.addNeighbour(node, nodeY, nodeX-1, neighbours);
@@ -163,7 +171,7 @@ DijkstraAlgo.js = function () {
                 this.addNeighbour(node, nodeY-1, nodeX, neighbours);
                 this.addNeighbour(node, nodeY-1, nodeX+1, neighbours);
 
-                this.addNeighbour(node, nodeY+1, nodeX, neighbours);
+                this.addNeighbour(node, nodeY+1, nodeX-1, neighbours);
 
                 this.addNeighbour(node, nodeY, nodeX-1, neighbours);
             }

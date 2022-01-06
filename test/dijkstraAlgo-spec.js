@@ -23,17 +23,17 @@ describe('dijkstraAlgo', () => {
         9,
         8
     ];
+    var grid = [];
+    for(var i = 0; i < gridRowsLength.length; i++) {
+        var row = [];
+        for(var j = 0; j < gridRowsLength[j].length; j++) {
+            cell = null;
+            row.push(cell);
+        }
+        grid.push(row);
+    }
 
     it('it should go to the goal', ()=> {
-        var grid = [];
-        for(var i = 0; i < gridRowsLength.length; i++) {
-            var row = [];
-            for(var j = 0; j < gridRowsLength[j].length; j++) {
-                cell = null;
-                row.push(cell);
-            }
-            grid.push(row);
-        }
         var dijkstraAlgo = new DijkstraAlgo.js();
         dijkstraAlgo.setGrid(grid);
 
@@ -52,7 +52,34 @@ describe('dijkstraAlgo', () => {
             expect(path[2].y).toBe(3);
             expect(path[2].x).toBe(4);
         });
-
     });
 
-})
+    it('it should go to the goal', (done) => {
+        var dijkstraAlgo = new DijkstraAlgo.js();
+        dijkstraAlgo.setGrid(grid);
+
+        var startY = 10;
+        var startX = 4;
+        var endY = 12;
+        var endX = 5;
+
+        dijkstraAlgo.findPath(startY, startX, endY, endX, (path) => {
+            done();
+        });
+    });
+
+    it('it should go to the goal', (done) => {
+        var dijkstraAlgo = new DijkstraAlgo.js();
+        dijkstraAlgo.setGrid(grid);
+
+        var startY = 6;
+        var startX = 5;
+        var endY = 11;
+        var endX = 8;
+
+        dijkstraAlgo.findPath(startY, startX, endY, endX, (path) => {
+            done();
+        });
+    });
+
+});
