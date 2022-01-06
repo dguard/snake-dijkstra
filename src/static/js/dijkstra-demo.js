@@ -106,13 +106,13 @@ var DijkstraDemo = function () {
                 hexagonBottom.classList.add('hexagon-bottom');
 
                 if((i+1) % 2 !== 0) {
-                //     hexagonTop.style = `
-                //     border-color: transparent transparent #ffff8a transparent;
-                //     border-width: 200px 200px 100px 200px;
-                //     height: 0;
-                //     width: 0;
-                //     border-style: solid;
-                // `;
+                    hexagonTop.style = `
+                    border-color: transparent transparent #ffff8a transparent;
+                    border-width: 200px 200px 100px 200px;
+                    height: 0;
+                    width: 0;
+                    border-style: solid;
+                `;
                     hexagonMiddle.style = `
                     width: 400px;
                     height: 210px;
@@ -120,50 +120,50 @@ var DijkstraDemo = function () {
                     margin-top: -10px;
                     
                     
-                    background: rgb(255, 255, 255);
-                    margin-top: -10px;
-                    color: #000;
-                    font-size: 100px;
+                    // background: rgb(255, 255, 255);
+                    // margin-top: -10px;
+                    // color: #000;
+                    // font-size: 100px;
                 `;
-                //     hexagonBottom.style = `
-                //     border-color: #ffff8a transparent transparent transparent;
-                //     border-width: 100px 200px 200px 200px;
-                //     height: 0;
-                //     width: 0;
-                //     border-style: solid;
-                //     margin-top: -10px;
-                // `;
+                    hexagonBottom.style = `
+                    border-color: #ffff8a transparent transparent transparent;
+                    border-width: 100px 200px 200px 200px;
+                    height: 0;
+                    width: 0;
+                    border-style: solid;
+                    margin-top: -10px;
+                `;
 
-                    hexagonMiddle.innerHTML = JSON.stringify([i, j]);
+                    // hexagonMiddle.innerHTML = JSON.stringify([i, j]);
                 } else {
-                //     hexagonTop.style = `
-                //     border-color: transparent transparent #ffffff transparent;
-                //     border-width: 200px 200px 100px 200px;
-                //     height: 0;
-                //     width: 0;
-                //     border-style: solid;
-                // `;
+                    hexagonTop.style = `
+                    border-color: transparent transparent #ffffff transparent;
+                    border-width: 200px 200px 100px 200px;
+                    height: 0;
+                    width: 0;
+                    border-style: solid;
+                `;
                     hexagonMiddle.style = `
                     width: 400px;
                     height: 210px;
                     background: #ffffff;
                     margin-top: -10px;
                     
-                    background: rgb(255, 255, 255);
-                    margin-top: -10px;
-                    color: #000;
-                    font-size: 100px;
+                    // background: rgb(255, 255, 255);
+                    // margin-top: -10px;
+                    // color: #000;
+                    // font-size: 100px;
                 `;
-                    hexagonMiddle.innerHTML = JSON.stringify([i, j]);
+                    // hexagonMiddle.innerHTML = JSON.stringify([i, j]);
 
-                //     hexagonBottom.style = `
-                //     border-color: #ffffff transparent transparent transparent;
-                //     border-width: 100px 200px 200px 200px;
-                //     height: 0;
-                //     width: 0;
-                //     border-style: solid;
-                //     margin-top: -10px;
-                // `;
+                    hexagonBottom.style = `
+                    border-color: #ffffff transparent transparent transparent;
+                    border-width: 100px 200px 200px 200px;
+                    height: 0;
+                    width: 0;
+                    border-style: solid;
+                    margin-top: -10px;
+                `;
                 }
                 hexagonCell.style = `
                     position: absolute;
@@ -179,27 +179,27 @@ var DijkstraDemo = function () {
                 var hexagonShadowMiddle = document.createElement('div');
                 var hexagonShadowBottom = document.createElement('div');
 
-                // hexagonShadowTop.style = `
-                //     border-color: transparent transparent #000 transparent;
-                //     border-width: 200px 200px 100px 200px;
-                //     height: 0;
-                //     width: 0;
-                //     border-style: solid;
-                // `;
+                hexagonShadowTop.style = `
+                    border-color: transparent transparent #000 transparent;
+                    border-width: 200px 200px 100px 200px;
+                    height: 0;
+                    width: 0;
+                    border-style: solid;
+                `;
                 hexagonShadowMiddle.style = `
                     width: 400px;
                     height: 210px;
                     background: #000;
                     margin-top: -5px;
                 `;
-                // hexagonShadowBottom.style = `
-                //     border-color: #000 transparent transparent transparent;
-                //     border-width: 100px 200px 200px 200px;
-                //     height: 0;
-                //     width: 0;
-                //     border-style: solid;
-                //     margin-top: -5px;
-                // `;
+                hexagonShadowBottom.style = `
+                    border-color: #000 transparent transparent transparent;
+                    border-width: 100px 200px 200px 200px;
+                    height: 0;
+                    width: 0;
+                    border-style: solid;
+                    margin-top: -5px;
+                `;
                 hexagonShadow.style = `
                     position: absolute;
                     top: 0;
@@ -309,276 +309,11 @@ var DijkstraDemo = function () {
             promise = new Promise((resolve, reject) => {
                 promise.then(() => {
                     img.parentElement.parentElement.classList.add('animated');
-                    var translateAnimatedClass;
-
-                    // if(pathCell.y === 0) {
-                    //     if(pathCell.x === 0) {
-                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-left';
-                    //         }
-                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-right';
-                    //         }
-                    //     } else if(pathCell.x < gridRowsLength[pathCell.y]-1) {
-                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-left';
-                    //         }
-                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-right';
-                    //         }
-                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-left';
-                    //         }
-                    //     } else if(pathCell.x === gridRowsLength[pathCell.y]-1) {
-                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-left';
-                    //         }
-                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-left';
-                    //         }
-                    //     }
-                    // } else if (pathCell.y < 6) {
-                    //     if(pathCell.x === 0) {
-                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-right';
-                    //         }
-                    //
-                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-left';
-                    //         }
-                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-right';
-                    //         }
-                    //     } else if(pathCell.x < gridRowsLength[pathCell.y]-1) {
-                    //         // this.addNeighbour(node, nodeY-1, nodeX-1, neighbours);
-                    //         // this.addNeighbour(node, nodeY-1, nodeX, neighbours);
-                    //         //
-                    //         // this.addNeighbour(node, nodeY+1, nodeX, neighbours);
-                    //         // this.addNeighbour(node, nodeY+1, nodeX+1, neighbours);
-                    //         //
-                    //         // this.addNeighbour(node, nodeY, nodeX+1, neighbours);
-                    //         // this.addNeighbour(node, nodeY, nodeX-1, neighbours);
-                    //
-                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-left';
-                    //         }
-                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-right';
-                    //         }
-                    //
-                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-left';
-                    //         }
-                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-right';
-                    //         }
-                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-left';
-                    //         }
-                    //
-                    //
-                    //     } else if(pathCell.x === gridRowsLength[pathCell.y]-1) {
-                    //
-                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-left';
-                    //         }
-                    //
-                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-left';
-                    //         }
-                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-left';
-                    //         }
-                    //     }
-                    // } else if (pathCell.y === 6) {
-                    //     if(pathCell.x === 0) {
-                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-right';
-                    //         }
-                    //
-                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-right';
-                    //         }
-                    //     } else if(pathCell.x < gridRowsLength[pathCell.y]-1) {
-                    //         // this.addNeighbour(node, nodeY-1, nodeX-1, neighbours);
-                    //         // this.addNeighbour(node, nodeY-1, nodeX, neighbours);
-                    //         //
-                    //         // this.addNeighbour(node, nodeY+1, nodeX-1, neighbours);
-                    //         // this.addNeighbour(node, nodeY+1, nodeX, neighbours);
-                    //         //
-                    //         // this.addNeighbour(node, nodeY, nodeX-1, neighbours);
-                    //         // this.addNeighbour(node, nodeY, nodeX+1, neighbours);
-                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-left';
-                    //         }
-                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-right';
-                    //         }
-                    //
-                    //         if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-left';
-                    //         }
-                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-left';
-                    //         }
-                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-right';
-                    //         }
-                    //     } else if(pathCell.x === gridRowsLength[pathCell.y]-1) {
-                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-left';
-                    //         }
-                    //
-                    //         if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-left';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-left';
-                    //         }
-                    //     }
-                    // } else if(pathCell.y < gridRowsLength.length-1) {
-                    //     if(pathCell.x === 0) {
-                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-left';
-                    //         }
-                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-right';
-                    //         }
-                    //
-                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-right';
-                    //         }
-                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-right';
-                    //         }
-                    //     } else if(pathCell.x < gridRowsLength[pathCell.y]-1) {
-                    //         // this.addNeighbour(node, nodeY-1, nodeX, neighbours);
-                    //         // this.addNeighbour(node, nodeY-1, nodeX+1, neighbours);
-                    //         //
-                    //         // this.addNeighbour(node, nodeY+1, nodeX-1, neighbours);
-                    //         // this.addNeighbour(node, nodeY+1, nodeX, neighbours);
-                    //         //
-                    //         // this.addNeighbour(node, nodeY, nodeX-1, neighbours);
-                    //         // this.addNeighbour(node, nodeY, nodeX+1, neighbours);
-                    //
-                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-left';
-                    //         }
-                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-right';
-                    //         }
-                    //
-                    //         if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-left';
-                    //         }
-                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-left';
-                    //         }
-                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-right';
-                    //         }
-                    //
-                    //     } else if(pathCell.x === gridRowsLength[pathCell.y]-1) {
-                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-left';
-                    //         }
-                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-right';
-                    //         }
-                    //
-                    //         if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-bottom-left';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-left';
-                    //         }
-                    //     }
-                    // } else if(pathCell.y === gridRowsLength.length-1) {
-                    //     if(pathCell.x === 0) {
-                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-left';
-                    //         }
-                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-right';
-                    //         }
-                    //     } else if(pathCell.x < gridRowsLength[pathCell.y]-1) {
-                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-left';
-                    //         }
-                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-left';
-                    //         }
-                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-right';
-                    //         }
-                    //     } else if(pathCell.x === gridRowsLength[pathCell.y]-1) {
-                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-left';
-                    //         }
-                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-top-right';
-                    //         }
-                    //
-                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
-                    //             translateAnimatedClass = 'animate-translate-left';
-                    //         }
-                    //     }
-                    // }
-
-
-                    // img.classList.add(translateAnimatedClass);
 
                     setTimeout(() => {
                         img.parentElement.parentElement.classList.remove('animated');
-                        // img.classList.remove(translateAnimatedClass);
                         resolve();
-                    }, 1000);
+                    }, 100);
                 });
             });
 
