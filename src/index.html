@@ -20,19 +20,28 @@
             }
         }
 
-        @keyframes translate-top-right {
-            0%   { transform: translate(0, 0); }
-            100% { transform: translate(200px, -290px); }
-        }
         @keyframes translate-top-left {
             0%   { transform: translate(0, 0); }
             100% { transform: translate(-200px, -290px); }
         }
+        @keyframes translate-top-right {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(200px, -290px); }
+        }
 
-        /*@keyframes translate-left {*/
-            /*0%   { transform: translate(0, 0); }*/
-            /*100% { transform: translate(200px, -290px); }*/
-        /*}*/
+        @keyframes translate-bottom-left {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(-200px, 290px); }
+        }
+        @keyframes translate-bottom-right {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(200px, 290px); }
+        }
+
+        @keyframes translate-left {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(-290px, 0); }
+        }
         @keyframes translate-right {
             0%   { transform: translate(0, 0); }
             100% { transform: translate(290px, 0); }
@@ -43,9 +52,11 @@
         .animate-translate-top-left { animation: translate-top-left 1s linear; }
         .animate-translate-top-right { animation: translate-top-right 1s linear; }
 
+        .animate-translate-bottom-left { animation: translate-bottom-left 1s linear; }
+        .animate-translate-bottom-right { animation: translate-bottom-right 1s linear; }
+
+        .animate-translate-left { animation: translate-left 1s linear; z-index: 10;}
         .animate-translate-right { animation: translate-right 1s linear; z-index: 10;}
-
-
 
 
     </style>

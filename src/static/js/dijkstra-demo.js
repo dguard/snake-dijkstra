@@ -307,90 +307,276 @@ var DijkstraDemo = function () {
         } else {
             var img = document.querySelectorAll('.row')[startCell.y].querySelectorAll('.cell')[startCell.x].querySelector('img');
             promise = new Promise((resolve, reject) => {
-                var cases = [
-                    [pathCell.y, 'equal', 0, 'and', pathCell.x, 'equal', 0, 'and', pathCell.y, 'equal', startCell.y, 'and', pathCell.x, 'equal', startCell.x-1, 'then', 'animate-translate-left'],
-                    [pathCell.y, 'equal', 0, 'and', pathCell.x, 'equal', 0, 'and', pathCell.y, 'equal', startCell.y-1, 'and', pathCell.x, 'equal', startCell.x, 'then', 'animate-translate-top-right'],
-
-                    [pathCell.y, 'equal', 0, 'and', pathCell.x, 'less', gridRowsLength[pathCell.y]-1, 'and', pathCell.y, 'equal', startCell.y, 'and', pathCell.x, 'equal', startCell.x+1, 'then', 'animate-translate-right'],
-                    [pathCell.y, 'equal', 0, 'and', pathCell.x, 'less', gridRowsLength[pathCell.y]-1, 'and', pathCell.y, 'equal', startCell.y, 'and', pathCell.x, 'equal', startCell.x-1, 'then', 'animate-translate-left'],
-                    [pathCell.y, 'equal', 0, 'and', pathCell.x, 'equal', gridRowsLength[pathCell.y]-1, 'and', pathCell.y, 'equal', startCell.y, 'and', pathCell.x, 'equal', startCell.x-1, 'then', 'animate-translate-left'],
-
-
-                    [pathCell.y, 'less', 7, 'and', pathCell.x, 'equal', 0, 'and', pathCell.y, 'equal', startCell.y+1, 'and', pathCell.x, 'equal', startCell.x, 'then', 'animate-translate-bottom-left'],
-                    [pathCell.y, 'less', 7, 'and', pathCell.x, 'less', gridRowsLength[pathCell.y]-1, 'and', pathCell.y, 'equal', startCell.y+1, 'and', pathCell.x, 'equal', startCell.x, 'then', 'animate-translate-bottom-left'],
-                    [pathCell.y, 'less', 7, 'and', pathCell.x, 'less', gridRowsLength[pathCell.y]-1, 'and', pathCell.y, 'equal', startCell.y+1, 'and', pathCell.x, 'equal', startCell.x+1, 'then', 'animate-translate-bottom-right'],
-                    [pathCell.y, 'less', 7, 'and', pathCell.x, 'equal', 0, 'and', pathCell.y, 'equal', startCell.y, 'and', pathCell.x, 'equal', startCell.x+1, 'then', 'animate-translate-right'],
-
-                    [pathCell.y, 'less', 7, 'and', pathCell.x, 'equal', gridRowsLength[pathCell.y]-1, 'and', pathCell.y, 'equal', startCell.y, 'and', pathCell.x, 'equal', startCell.x+1, 'then', 'animate-translate-right'],
-                    [pathCell.y, 'less', 7, 'and', pathCell.x, 'less', gridRowsLength[pathCell.y]-1, 'and', pathCell.y, 'equal', startCell.y, 'and', pathCell.x, 'equal', startCell.x+1, 'then', 'animate-translate-right'],
-
-
-                    [pathCell.y, 'less', 7, 'and', pathCell.x, 'equal', gridRowsLength[pathCell.y]-1, 'and', pathCell.y, 'equal', startCell.y+1, 'and', pathCell.x, 'equal', startCell.x+1, 'then', 'animate-translate-bottom-right'],
-                    [pathCell.y, 'less', 7, 'and', pathCell.x, 'equal', gridRowsLength[pathCell.y]-1, 'and', pathCell.y, 'equal', startCell.y+1, 'and', pathCell.x, 'equal', startCell.x-1, 'then', 'animate-translate-bottom-left'],
-                ];
-
                 promise.then(() => {
                     img.parentElement.parentElement.classList.add('animated');
-                    cases.map((caseArgs) => {
-                        var pathCellYInRow = caseArgs[1] === 'equal' ? caseArgs[0] === caseArgs[2] : caseArgs[1] === 'less' ? caseArgs[0] < caseArgs[2] : false;
-                        var pathCellXInCell = caseArgs[5] === 'equal' ? caseArgs[4] === caseArgs[6] : caseArgs[5] === 'less' ? caseArgs[4] < caseArgs[6] : false;
-                        var pathCellYWithStartCellY = caseArgs[9] === 'equal' ? caseArgs[8] === caseArgs[10] : false;
-                        var pathCellXWithStartCellX = caseArgs[13] === 'equal' ? caseArgs[12] === caseArgs[14] : false;
-                        var chosenClass = caseArgs[16];
+                    var translateAnimatedClass;
 
-                        if(pathCellYInRow && pathCellXInCell && pathCellYWithStartCellY && pathCellXWithStartCellX) {
-                            img.classList.add(chosenClass);
-                        }
-                    });
-
-
-                    if(pathCell.y === 0) {
-
-                    } else if (pathCell.y < 7) {
-
-                    } else if (pathCell.y === 7) {
-
-                    } else if(pathCell.y < gridRowsLength.length-1) {
-
-                    } else if(pathCell.y === gridRowsLength.length-1) {
-
-                    }
-
-                    // if(pathCell.y === (startCell.y-1) && pathCell.x === (startCell.x-1)) {
-                    //     // top left view
-                    //     img.classList.add('animate-translate-top-left');
-                    // } else if(pathCell.y === (startCell.y-1) && pathCell.x === startCell.x) {
-                    //     // top right view
-                    //     img.classList.add('animate-translate-top-right');
-                    // } else if(pathCell.y === (startCell.y+1) && pathCell.x === (startCell.x-1)) {
-                    //     // bottom left view
-                    //     img.classList.add('animate-translate-bottom-left');
-                    // } else if(pathCell.y === (startCell.y+1) && pathCell.x === startCell.x) {
-                    //     // bottom right view
-                    //     img.classList.add('animate-translate-bottom-right');
-                    // } else if(pathCell.y === startCell.y && pathCell.x === (startCell.x-1)) {
-                    //     // left view
-                    //     img.classList.add('animate-translate-left');
-                    // } else if(pathCell.y === startCell.y && pathCell.x === (startCell.x+1)) {
-                    //     // right view
-                    //     img.classList.add('animate-translate-right');
+                    // if(pathCell.y === 0) {
+                    //     if(pathCell.x === 0) {
+                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-left';
+                    //         }
+                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-right';
+                    //         }
+                    //     } else if(pathCell.x < gridRowsLength[pathCell.y]-1) {
+                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-left';
+                    //         }
+                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-right';
+                    //         }
+                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-left';
+                    //         }
+                    //     } else if(pathCell.x === gridRowsLength[pathCell.y]-1) {
+                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-left';
+                    //         }
+                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-left';
+                    //         }
+                    //     }
+                    // } else if (pathCell.y < 6) {
+                    //     if(pathCell.x === 0) {
+                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-right';
+                    //         }
+                    //
+                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-left';
+                    //         }
+                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-right';
+                    //         }
+                    //     } else if(pathCell.x < gridRowsLength[pathCell.y]-1) {
+                    //         // this.addNeighbour(node, nodeY-1, nodeX-1, neighbours);
+                    //         // this.addNeighbour(node, nodeY-1, nodeX, neighbours);
+                    //         //
+                    //         // this.addNeighbour(node, nodeY+1, nodeX, neighbours);
+                    //         // this.addNeighbour(node, nodeY+1, nodeX+1, neighbours);
+                    //         //
+                    //         // this.addNeighbour(node, nodeY, nodeX+1, neighbours);
+                    //         // this.addNeighbour(node, nodeY, nodeX-1, neighbours);
+                    //
+                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-left';
+                    //         }
+                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-right';
+                    //         }
+                    //
+                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-left';
+                    //         }
+                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-right';
+                    //         }
+                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-left';
+                    //         }
+                    //
+                    //
+                    //     } else if(pathCell.x === gridRowsLength[pathCell.y]-1) {
+                    //
+                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-left';
+                    //         }
+                    //
+                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-left';
+                    //         }
+                    //         if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-left';
+                    //         }
+                    //     }
+                    // } else if (pathCell.y === 6) {
+                    //     if(pathCell.x === 0) {
+                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-right';
+                    //         }
+                    //
+                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-right';
+                    //         }
+                    //     } else if(pathCell.x < gridRowsLength[pathCell.y]-1) {
+                    //         // this.addNeighbour(node, nodeY-1, nodeX-1, neighbours);
+                    //         // this.addNeighbour(node, nodeY-1, nodeX, neighbours);
+                    //         //
+                    //         // this.addNeighbour(node, nodeY+1, nodeX-1, neighbours);
+                    //         // this.addNeighbour(node, nodeY+1, nodeX, neighbours);
+                    //         //
+                    //         // this.addNeighbour(node, nodeY, nodeX-1, neighbours);
+                    //         // this.addNeighbour(node, nodeY, nodeX+1, neighbours);
+                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-left';
+                    //         }
+                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-right';
+                    //         }
+                    //
+                    //         if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-left';
+                    //         }
+                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-left';
+                    //         }
+                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-right';
+                    //         }
+                    //     } else if(pathCell.x === gridRowsLength[pathCell.y]-1) {
+                    //         if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-left';
+                    //         }
+                    //
+                    //         if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-left';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-left';
+                    //         }
+                    //     }
+                    // } else if(pathCell.y < gridRowsLength.length-1) {
+                    //     if(pathCell.x === 0) {
+                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-left';
+                    //         }
+                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-right';
+                    //         }
+                    //
+                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-right';
+                    //         }
+                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-right';
+                    //         }
+                    //     } else if(pathCell.x < gridRowsLength[pathCell.y]-1) {
+                    //         // this.addNeighbour(node, nodeY-1, nodeX, neighbours);
+                    //         // this.addNeighbour(node, nodeY-1, nodeX+1, neighbours);
+                    //         //
+                    //         // this.addNeighbour(node, nodeY+1, nodeX-1, neighbours);
+                    //         // this.addNeighbour(node, nodeY+1, nodeX, neighbours);
+                    //         //
+                    //         // this.addNeighbour(node, nodeY, nodeX-1, neighbours);
+                    //         // this.addNeighbour(node, nodeY, nodeX+1, neighbours);
+                    //
+                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-left';
+                    //         }
+                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-right';
+                    //         }
+                    //
+                    //         if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-left';
+                    //         }
+                    //         if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-left';
+                    //         }
+                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-right';
+                    //         }
+                    //
+                    //     } else if(pathCell.x === gridRowsLength[pathCell.y]-1) {
+                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-left';
+                    //         }
+                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-right';
+                    //         }
+                    //
+                    //         if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-bottom-left';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-left';
+                    //         }
+                    //     }
+                    // } else if(pathCell.y === gridRowsLength.length-1) {
+                    //     if(pathCell.x === 0) {
+                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-left';
+                    //         }
+                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-right';
+                    //         }
+                    //     } else if(pathCell.x < gridRowsLength[pathCell.y]-1) {
+                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-left';
+                    //         }
+                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-left';
+                    //         }
+                    //         if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-right';
+                    //         }
+                    //     } else if(pathCell.x === gridRowsLength[pathCell.y]-1) {
+                    //         if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-left';
+                    //         }
+                    //         if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-top-right';
+                    //         }
+                    //
+                    //         if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    //             translateAnimatedClass = 'animate-translate-left';
+                    //         }
+                    //     }
                     // }
-                    // else if(pathCell.y === (startCell.y-1) && pathCell.x === (startCell.x+1)) {
-                    //     // bottom left view
-                    //     img.classList.add('animate-translate-top-right');
-                    // }
-                    // else if(pathCell.y === (startCell.y+1) && pathCell.x === (startCell.x+1)) {
-                    //     // bottom right view
-                    //     img.classList.add('animate-translate-bottom-right');
-                    // }
 
 
-
-
+                    // img.classList.add(translateAnimatedClass);
 
                     setTimeout(() => {
                         img.parentElement.parentElement.classList.remove('animated');
-                        img.classList.remove('animate-translate-top-right');
+                        // img.classList.remove(translateAnimatedClass);
                         resolve();
                     }, 1000);
                 });
@@ -442,36 +628,234 @@ var DijkstraDemo = function () {
             margin-left: -100px;
         `;
 
-        if(pathCell.y === (startCell.y-1) && pathCell.x === (startCell.x-1)) {
-            // top left view
-            img.src = 'static/img/probe-top-left.png';
-        } else if(pathCell.y === (startCell.y-1) && pathCell.x === startCell.x) {
-            // top right view
-            img.src = 'static/img/probe-top-right.png';
-        } else if(pathCell.y === (startCell.y+1) && pathCell.x === (startCell.x-1)) {
-            // bottom left view
-            img.src = 'static/img/probe-bottom-left.png';
-        } else if(pathCell.y === (startCell.y+1) && pathCell.x === startCell.x) {
-            // bottom right view
-            img.src = 'static/img/probe-bottom-right.png';
-        } else if(pathCell.y === startCell.y && pathCell.x === (startCell.x-1)) {
-            // left view
-            img.src = 'static/img/probe-left.png';
-        } else if(pathCell.y === startCell.y && pathCell.x === (startCell.x+1)) {
-            // right view
-            img.src = 'static/img/probe-right.png';
+        img.src = 'static/img/probe-center.png';
+
+        if(startCell.y === 0) {
+            if(startCell.x === 0) {
+                if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-left.png';
+                }
+                if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-right.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-right.png';
+                }
+            } else if(pathCell.x < gridRowsLength[pathCell.y]-1) {
+                if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-left.png';
+                }
+                if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-right.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-right.png';
+                }
+                if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-left.png';
+                }
+            } else if(pathCell.x === gridRowsLength[pathCell.y]-1) {
+                if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-left.png';
+                }
+                if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-right.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-left.png';
+                }
+            }
+        } else if(startCell.y < 6) {
+            if(startCell.x === 0) {
+                if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-top-right.png';
+                }
+                if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-left.png';
+                }
+                if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-right.png';
+                }
+                if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-right.png';
+                }
+            } else if(startCell.x < gridRowsLength[startCell.y]-1) {
+                if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-top-left.png';
+                }
+                if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-top-right.png';
+                }
+                if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-left.png';
+                }
+                if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-right.png';
+                }
+                if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-right.png';
+                }
+                if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-left.png';
+                }
+            } else if(startCell.x === gridRowsLength[startCell.y]-1) {
+                if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-top-left.png';
+                }
+                if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-left.png';
+                }
+                if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-right.png';
+                }
+                if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-left.png';
+                }
+            }
+        } else if(startCell.y === 6) {
+            if(startCell.x === 0) {
+                if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-top-right.png';
+                }
+
+                if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-right.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-right.png';
+                }
+            } else if(startCell.x < gridRowsLength[startCell.y]-1) {
+                if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-top-left.png';
+                }
+                if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-top-right.png';
+                }
+
+                if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-left.png';
+                }
+                if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-right.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-left.png';
+                }
+                if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-right.png';
+                }
+            } else if(startCell.x === gridRowsLength[startCell.y]-1) {
+                if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-top-left.png';
+                }
+
+                if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-left.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-left.png';
+                }
+            }
+        } else if(startCell.y < gridRowsLength.length-1) {
+            if(startCell.x === 0) {
+                if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-top-left.png';
+                }
+                if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-top-right.png';
+                }
+
+                if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-right.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-right.png';
+                }
+
+            } else if(startCell.x < gridRowsLength[startCell.y]-1) {
+                if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-top-left.png';
+                }
+                if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-top-right.png';
+                }
+
+                if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-left.png';
+                }
+                if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-right.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-left.png';
+                }
+                if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-right.png';
+                }
+            } else if(startCell.x === gridRowsLength[startCell.y]-1) {
+                if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-top-left.png';
+                }
+                if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-top-right.png';
+                }
+
+                if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-bottom-left.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-left.png';
+                }
+            }
+        } else if(startCell.y === gridRowsLength.length-1) {
+            if(startCell.x === 0) {
+                if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-top-left.png';
+                }
+                if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-top-right.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-right.png';
+                }
+            } else if(startCell.x < gridRowsLength[startCell.y]-1) {
+                if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-top-left.png';
+                }
+                if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-top-right.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-left.png';
+                }
+                if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-right.png';
+                }
+            } else if(startCell.x === gridRowsLength[startCell.y]-1) {
+                if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                    img.src = 'static/img/probe-top-left.png';
+                }
+                if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                    img.src = 'static/img/probe-top-right.png';
+                }
+
+                if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                    img.src = 'static/img/probe-left.png';
+                }
+            }
         }
-        else if(pathCell.y === (startCell.y-1) && pathCell.x === (startCell.x+1)) {
-            // top right view
-            img.src = 'static/img/probe-top-right.png';
-        }
-        else if(pathCell.y === (startCell.y+1) && pathCell.x === (startCell.x+1)) {
-            // top bottom right view
-            img.src = 'static/img/probe-bottom-right.png';
-        } else {
-            // center view
-            img.src = 'static/img/probe-center.png';
-        }
+
         hexagon.querySelector('.hexagon-middle').appendChild(img);
     };
     this._drawEndCellLayer = (endCell) => {
