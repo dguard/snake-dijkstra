@@ -107,63 +107,50 @@ var DijkstraDemo = function () {
 
                 if((i+1) % 2 !== 0) {
                     hexagonTop.style = `
-                    border-color: transparent transparent #ffff8a transparent;
-                    border-width: 200px 200px 100px 200px;
-                    height: 0;
-                    width: 0;
-                    border-style: solid;
-                `;
+                        border-color: transparent transparent #ffff8a transparent;
+                        border-width: 200px 200px 100px 200px;
+                        height: 0;
+                        width: 0;
+                        border-style: solid;
+                    `;
                     hexagonMiddle.style = `
-                    width: 400px;
-                    height: 210px;
-                    background: #ffff8a;
-                    margin-top: -10px;
-                    
-                    
-                    // background: rgb(255, 255, 255);
-                    // margin-top: -10px;
-                    // color: #000;
-                    // font-size: 100px;
-                `;
+                        width: 400px;
+                        height: 210px;
+                        background: #ffff8a;
+                        margin-top: -10px;
+                    `;
                     hexagonBottom.style = `
-                    border-color: #ffff8a transparent transparent transparent;
-                    border-width: 100px 200px 200px 200px;
-                    height: 0;
-                    width: 0;
-                    border-style: solid;
-                    margin-top: -10px;
-                `;
+                        border-color: #ffff8a transparent transparent transparent;
+                        border-width: 100px 200px 200px 200px;
+                        height: 0;
+                        width: 0;
+                        border-style: solid;
+                        margin-top: -10px;
+                    `;
 
-                    // hexagonMiddle.innerHTML = JSON.stringify([i, j]);
                 } else {
                     hexagonTop.style = `
-                    border-color: transparent transparent #ffffff transparent;
-                    border-width: 200px 200px 100px 200px;
-                    height: 0;
-                    width: 0;
-                    border-style: solid;
-                `;
+                        border-color: transparent transparent #ffffff transparent;
+                        border-width: 200px 200px 100px 200px;
+                        height: 0;
+                        width: 0;
+                        border-style: solid;
+                    `;
                     hexagonMiddle.style = `
-                    width: 400px;
-                    height: 210px;
-                    background: #ffffff;
-                    margin-top: -10px;
-                    
-                    // background: rgb(255, 255, 255);
-                    // margin-top: -10px;
-                    // color: #000;
-                    // font-size: 100px;
-                `;
-                    // hexagonMiddle.innerHTML = JSON.stringify([i, j]);
+                        width: 400px;
+                        height: 210px;
+                        background: #ffffff;
+                        margin-top: -10px;                    
+                    `;
 
                     hexagonBottom.style = `
-                    border-color: #ffffff transparent transparent transparent;
-                    border-width: 100px 200px 200px 200px;
-                    height: 0;
-                    width: 0;
-                    border-style: solid;
-                    margin-top: -10px;
-                `;
+                        border-color: #ffffff transparent transparent transparent;
+                        border-width: 100px 200px 200px 200px;
+                        height: 0;
+                        width: 0;
+                        border-style: solid;
+                        margin-top: -10px;
+                    `;
                 }
                 hexagonCell.style = `
                     position: absolute;
@@ -217,7 +204,6 @@ var DijkstraDemo = function () {
 
 
                 var hexagonClass;
-                // 0,-1,-2,-3,-4,-5, -4, -3,-2,-1,0
 
                 if((i+1) % 2 !== 0) { // even
                     if(i < 7) {
@@ -310,10 +296,252 @@ var DijkstraDemo = function () {
                 promise.then(() => {
                     img.parentElement.parentElement.classList.add('animated');
 
+                    var animateTranslateClass;
+
+                    if(startCell.y === 0) {
+                        if(startCell.x === 0) {
+                            if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-left';
+                            }
+                            if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        } else if(startCell.x < gridRowsLength[startCell.y] -1) {
+                            if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-left';
+                            }
+                            if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-left';
+                            }
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        } else if(startCell.x === gridRowsLength[startCell.y]-1) {
+                            if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-left';
+                            }
+                            if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        }
+                    } else if (startCell.y < 6) {
+                        if(startCell.x === 0) {
+                            if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-right';
+                            }
+
+                            if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-left';
+                            }
+                            if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        } else if(startCell.x < gridRowsLength[startCell.y] -1) {
+                            if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-left';
+                            }
+                            if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-right';
+                            }
+
+                            if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-left';
+                            }
+                            if(startCell.y+1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-left';
+                            }
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        } else if(startCell.x === gridRowsLength[startCell.y]-1) {
+                            if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-left';
+                            }
+
+                            if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-left';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-left';
+                            }
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        }
+                    } else if (startCell.y === 6) {
+                        if(startCell.x === 0) {
+                            if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-right';
+                            }
+
+                            if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-left';
+                            }
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        } else if(startCell.x < gridRowsLength[startCell.y] -1) {
+                            if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-left';
+                            }
+                            if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-right';
+                            }
+
+                            if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-left';
+                            }
+                            if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-left';
+                            }
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        } else if(startCell.x === gridRowsLength[startCell.y]-1) {
+                            if(startCell.y-1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-left';
+                            }
+
+                            if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-left';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-left';
+                            }
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        }
+                    } else if(startCell.y < gridRowsLength.length-1) {
+                        if(startCell.x === 0) {
+                            if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-left';
+                            }
+                            if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-right';
+                            }
+
+                            if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        } else if(startCell.x < gridRowsLength[startCell.y] -1) {
+                            if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-left';
+                            }
+                            if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-right';
+                            }
+
+                            if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-left';
+                            }
+                            if(startCell.y+1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-left';
+                            }
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        } else if(startCell.x === gridRowsLength[startCell.y]-1) {
+                            if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-left';
+                            }
+                            if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-right';
+                            }
+
+                            if(startCell.y+1 === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-bottom-left';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-left';
+                            }
+                        }
+                    } else if(startCell.y === gridRowsLength.length-1) {
+                        if(startCell.x === 0) {
+                            if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-left';
+                            }
+                            if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        } else if(startCell.x < gridRowsLength[startCell.y] -1) {
+                            if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-left';
+                            }
+                            if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-left';
+                            }
+                            if(startCell.y === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-right';
+                            }
+                        } else if(startCell.x === gridRowsLength[startCell.y]-1) {
+                            if(startCell.y-1 === pathCell.y && startCell.x === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-left';
+                            }
+                            if(startCell.y-1 === pathCell.y && startCell.x+1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-top-right';
+                            }
+
+                            if(startCell.y === pathCell.y && startCell.x-1 === pathCell.x) {
+                                animateTranslateClass = 'animate-translate-left';
+                            }
+                        }
+                    }
+
+                    animateTranslateClass && img.classList.add(animateTranslateClass);
+
                     setTimeout(() => {
                         img.parentElement.parentElement.classList.remove('animated');
+                        animateTranslateClass && img.classList.remove(animateTranslateClass);
                         resolve();
-                    }, 100);
+                    }, 1000);
                 });
             });
 
@@ -329,7 +557,7 @@ var DijkstraDemo = function () {
 
             setTimeout(() => {
                 cb();
-            }, 100)
+            }, 0)
         });
     };
     this.doMove = (path, cb) => {
@@ -644,6 +872,33 @@ var DijkstraDemo = function () {
         var startY = 6;
         var startX = 5;
         var endY = 11;
+        var endX = 8;
+
+        var startY = 6;
+        var startX = 5;
+        var endY = 6;
+        var endX = 8;
+
+        var startY = 6;
+        var startX = 5;
+        var endY = 6;
+        var endX = 0;
+
+        var startY = 7;
+        var startX = 5;
+        var endY = 7;
+        var endX = 0;
+
+
+        var startY = 12;
+        var startX = 5;
+        var endY = 12;
+        var endX = 0;
+
+
+        var startY = 6;
+        var startX = 5;
+        var endY = 6;
         var endX = 8;
 
         dijkstraAlgo.putStartCell(startY, startX);
