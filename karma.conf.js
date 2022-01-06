@@ -22,6 +22,7 @@ module.exports = function(config) {
     files: [
 
       'src/static/js/node.js',
+      'src/static/js/dijkstra-demo.js',
       'src/static/js/dijkstra-algo.js',
       'test/*-spec.js',
     ],
