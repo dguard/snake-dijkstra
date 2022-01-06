@@ -1,5 +1,12 @@
+/**
+ *   DijkstraAlgo-Spec.js
+ *   github.com/dguard/snake-dijkstra
+ *   Licensed under the MIT license.
+ *
+ *   Implementation By Alexander Serditov (keep@digitallyconstructed.ru)
+ **/
 
-describe('dijkstraAlgo', () => {
+describe('dijkstraDemo', () => {
 
 
     var gridRowsLength = [
@@ -61,17 +68,6 @@ describe('dijkstraAlgo', () => {
         }
 
     });
-
-    // right, bottom-left, bottom-right; left,right,bottom-left,bottom-right; left,bottom-left,bottom-right
-
-    // right, bottom-left, bottom-right, top-right; left,right,bottom-left,bottom-right,top-left,top-right; left,bottom-left,bottom-right,top-left
-
-    // right, bottom-right, top-right; left,right,bottom-left,bottom-right,top-left,top-right; left,bottom-left,top-left
-
-    // mirror
-    // right, bottom-right, top-left, top-right; left,right,bottom-left,bottom-right,top-left,top-right; left,bottom-left,top-left,top-right
-
-    // right, top-left, top-right; left,right,bottom-left,bottom-right; left,top-left,top-right
 
     var cases = [
         [0, 0, "right", 0, 1, 'animate-translate-right'],
